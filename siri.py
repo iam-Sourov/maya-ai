@@ -47,19 +47,27 @@ async def speech_worker():
 
 # --- 3. THE EARS (High Accuracy Settings) ---
 recognizer = sr.Recognizer()
-recognizer.energy_threshold = 400 
+recognizer.energy_threshold = 250  # Even more sensitive for quiet speech
 recognizer.dynamic_energy_threshold = True
-recognizer.pause_threshold = 1.0 
-recognizer.non_speaking_duration = 0.8
+recognizer.dynamic_energy_adjustment_damping = 0.15
+recognizer.pause_threshold = 1.2  # Allow longer pauses between words
+recognizer.non_speaking_duration = 0.6
 
 def listen_instant():
     with sr.Microphone() as source:
         print("\n[READY]", end=" ", flush=True)
         try:
-            audio = recognizer.listen(source, timeout=5, phrase_time_limit=12)
+            # Removed phrase_time_limit to prevent cutting off long sentences
+            audio = recognizer.listen(source, timeout=None, phrase_time_limit=None)
             text = recognizer.recognize_google(audio, language='en-US')
             return text
-        except: return None
+        except sr.UnknownValueError:
+            return None
+        except sr.RequestError:
+            print("[ERROR] Internet connection issue for speech recognition.")
+            return None
+        except Exception as e:
+            return None
 
 # --- 4. THE BRAIN ---
 async def get_maya_response(user_input):
@@ -114,7 +122,7 @@ async def automation_handler(command):
         pyautogui.press('f5')
         return True
 
-    elif "minimize" in cmd:
+    elif "minimise" in cmd:
         pyautogui.hotkey('win', 'd')
         return True
     

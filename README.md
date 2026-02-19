@@ -1,38 +1,40 @@
-# Maya AI - The Advanced Bengali Desktop Assistant
+# Maya AI - Advanced Desktop Assistant
 
-Maya is a sophisticated, locally-hosted AI assistant designed to bridge the gap between voice, vision, and desktop automation. Inspired by JARVIS, she now speaks and understands **Bengali (Bangla)** fluently, making her a perfect companion for South Asian developers and users.
+Maya is a powerful, locally-hosted AI assistant designed to be your intelligent desktop companion. Inspired by JARVIS, she bridges the gap between voice, web automation, and system control.
 
-She features **Real-time Voice Interaction**, **Desktop Automation**, and **Hand Gesture Control**.
+She is optimized for **South Asian English accents** and runs completely offline using local LLMs suitable for privacy-conscious users.
 
 ## 🚀 Key Features
 
-### 🗣️ Fluent Bengali Voice Assistant
--   **Voice**: Uses **`bn-IN-TanishaaNeural`**, a high-quality, natural-sounding female Bengali voice.
--   **Understanding**: Optimized for **Bangla Speech Recognition** (`bn-BD` / `en-IN`), understanding natural phrases like _"কেমন আছো?"_ or _"গান শোনাও"_.
--   **Personality**: Witty, sarcastic, and concise—she replies entirely in Bengali.
-
-### 🧠 Intelligent & Private
--   **Local LLM**: Powered by **Ollama** (running `llama3:latest` or `llama3.2:3b`), ensuring complete privacy and offline capability.
+### 🗣️ Natural Voice & Hearing
+-   **Voice**: Uses **`en-IN-PradeepNeural`** (Professional Indian English Male).
+-   **Hearing**: Optimized for Indian/Bangladeshi English accents (`en-IN` engine).
+-   **Conversation**: Powered by **Llama 3** (via Ollama), Maya has a witty, sarcastic, and concise personality.
 -   **Smart Listening**:
-    -   **Self-Hearing Prevention**: Automatically "closes her ears" while speaking to prevent echo loops.
-    -   **Dynamic Noise Adjustment**: Adapts to your room's background noise.
+    -   **Self-Hearing Prevention**: She deafens herself while speaking to prevent echo loops.
+    -   **Phonetic Autocorrect**: Automatically fixes common misheard words (e.g., "momo" -> "moho").
 
-### ⚡ Hands-Free Automation (Bengali Commands)
-Control your Windows PC entirely with voice:
-| Action | Bengali Command | English Equivalent |
+### ⚡ Desktop Automation
+Control your Windows PC entirely with voice commands:
+
+| Action | Voice Command | Description |
 | :--- | :--- | :--- |
-| **Volume** | "আওয়াজ বাড়াও" / "শব্দ কমাও" / "চুপ করো" | Volume Up/Down/Mute |
-| **App Switching** | "অ্যাপ পরিবর্তন করো" / "উইন্ডো সরাও" | Switch Window (Alt+Tab) |
-| **Open Apps** | "ইউটিউব খোল" / "ক্রোম চালু করো" | Open YouTube/Chrome |
-| **Search** | "ইউটিউবে [Query] খোঁজ" | Search on YouTube |
-| **Window** | "বড় করো" / "লুকান" / "বন্ধ করো" | Maximize/Minimize/Close |
-| **Typing** | "লিখুন [Text]" | Type dictated text |
-| **Scrolling** | "নিচে স্ক্রল করো" | Scroll Down |
+| **Play Music** | "Play [Song Name]" | *New!* Auto-launches Chrome, searches YouTube, and plays the video. |
+| **Volume** | "Volume Up" / "Down" / "Mute" | Adjusts system volume. |
+| **App Switching** | "Switch Window" / "Switch to Chrome" | Uses Alt+Tab or Windows Search to switch apps. |
+| **Open Apps** | "Open YouTube", "Open Google" | Launches websites/apps instantly. |
+| **Window** | "Maximize", "Minimize", "Close Window" | Manages active windows. |
+| **Typing** | "Type [Text]" | Types whatever you dictate. |
+| **Scrolling** | "Scroll Down" / "Up" | Scrolls the active page. |
 
-## ️ Installation
+### 🛑 Global Kill Switch
+-   **Emergency Stop**: Press **`ESC`** at any time to instantly kill the program, stop speaking, and stop listening.
+
+## 🛠️ Installation
 
 ### 1. Prerequisites
 -   **Python 3.10+**
+-   **Google Chrome** (for Selenium automation)
 -   **Ollama**: [Download here](https://ollama.com/) and pull the model:
     ```bash
     ollama run llama3:latest
@@ -46,13 +48,13 @@ Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/your-username/maya-ai.git
 cd maya-ai
-pip install edge-tts pygame SpeechRecognition ollama pyautogui
+pip install edge-tts pygame SpeechRecognition ollama pyautogui keyboard selenium webdriver-manager
 ```
-*(Note: Windows users might need to install `pyaudio` via pipwin or a .whl file if pip fails)*
+*(Note: Windows users might need to install `pyaudio` manualy if pip fails)*
 
 ## 🎮 Usage
 
-### Start the Voice Assistant
+### Start the Assistant
 ```bash
 python maya.py
 ```
@@ -63,12 +65,12 @@ python maya.py
 You can adjust settings in `maya.py`:
 
 ```python
-# Change Voice (e.g., to Male Bengali)
-VOICE = "bn-BD-PradeepNeural"
+# Change Voice (e.g., to Female English)
+VOICE = "en-IN-NeerjaNeural"
 
 # Change Model (for speed vs intelligence)
 MODEL = "llama3.2:3b" 
 ```
 
 ## 🤝 Contributing
-Contributions are welcome! Feel free to add new Bengali automation triggers or improve the vision model.
+Contributions are welcome! Feel free to add new automation skills or improve the AI performance.
